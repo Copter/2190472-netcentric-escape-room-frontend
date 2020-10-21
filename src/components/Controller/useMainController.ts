@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { Status } from "../constants";
+import { Status } from "../../constants";
 
 const useMainController = () => {
   const [status, setStatus] = useState<Status>(Status.SELECT_GAME);

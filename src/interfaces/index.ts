@@ -32,3 +32,8 @@ export interface Game {
   roomCode: string;
   players: Array<Player>;
 }
+
+export interface Program {
+  game: Game | null;
+  myPlayer: Player | null;
+}

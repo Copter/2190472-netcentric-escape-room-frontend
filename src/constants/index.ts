@@ -5,3 +5,10 @@ export enum Status {
   JOIN_ROOM,
   PLAY_GAME,
 }
+
+export enum Event {
+  CREATE_GAME = "create game",
+  PREJOIN_ROOM = "prejoin room",
+  JOIN_ROOM = "join room",
+  PLAY_GAME = "play game",
+}
