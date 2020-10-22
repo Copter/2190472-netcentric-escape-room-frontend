@@ -1,5 +1,5 @@
 import React, { useContext } from "react";
-import { SocketContext } from "../socket/context";
+import { SocketContext } from "../../socket/context";
 
 const CreateRoom = () => {
   const { emit, programData } = useContext(SocketContext);

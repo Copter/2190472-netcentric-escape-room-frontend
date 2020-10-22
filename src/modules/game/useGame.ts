@@ -1,6 +1,6 @@
 import { useContext, useState } from "react";
-import { Game } from "../interfaces";
-import { SocketContext } from "../socket/context";
+import { Game } from "../../interfaces";
+import { SocketContext } from "../../socket/context";
 
 const useGame = () => {
   const [game] = useState<Game | null>(null);

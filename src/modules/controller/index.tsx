@@ -1,10 +1,10 @@
 import React from "react";
 import { Status } from "../../constants";
+import CreateRoom from "../createRoom";
+import Game from "../game";
+import JoinRoom from "../joinGame";
+import SelectGame from "../selectGame";
 import useMainController from "./useMainController";
-import CreateRoom from "../CreateRoom";
-import Game from "../Game";
-import JoinRoom from "../JoinRoom";
-import SelectGame from "../SelectGame";
 
 const Controller = () => {
   const { status, setStatus } = useMainController();

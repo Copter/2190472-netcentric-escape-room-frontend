@@ -1,5 +1,5 @@
 import React from "react";
-import { Status } from "../constants";
+import { Status } from "../../constants";
 
 interface PropTypes {
   selectGame: (SelectGame: Status.CREATE_ROOM | Status.JOIN_ROOM) => void;
