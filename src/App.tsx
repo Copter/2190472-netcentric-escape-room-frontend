@@ -1,6 +1,6 @@
 import React from "react";
 import "./App.css";
-import Controller from "./components/Controller";
+import Controller from "./modules/controller";
 import SocketProvider from "./socket/context";
 
 function App() {
