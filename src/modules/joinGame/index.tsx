@@ -11,7 +11,7 @@ const JoinRoom = () => {
   };
 
   const handleJoinGame = () => {
-    emit(Event.JOIN_ROOM);
+    emit(Event.JOIN_ROOM, { playerName, roomCode: programData.roomID });
   };
 
   return (

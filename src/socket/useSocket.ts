@@ -29,7 +29,10 @@ const useSocket = () => {
     });
   }, [socket]);
 
-  return { emit: socket.emit, programData };
+  return {
+    emit: (event: string, ...args: any[]) => socket.emit(event, ...args),
+    programData,
+  };
 };
 
 export default useSocket;
