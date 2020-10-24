@@ -4,13 +4,14 @@ import { Event } from "../constants";
 import { Game, Player } from "../interfaces";
 import socketReducer from "./reducer";
 
-const ENDPOINT = "http://127.0.0.1:3000";
+const ENDPOINT = "http://127.0.0.1:8000";
 
 const useSocket = () => {
   const [socket] = useState(socketIOClient(ENDPOINT));
   const [programData, dispatch] = useReducer(socketReducer, {
     game: null,
     myPlayer: null,
+    roomID: null,
   });
 
   useEffect(() => {
