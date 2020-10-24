@@ -11,6 +11,7 @@ const useSocket = () => {
   const [programData, dispatch] = useReducer(socketReducer, {
     game: null,
     myPlayer: null,
+    roomID: null,
   });
 
   useEffect(() => {

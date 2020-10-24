@@ -3,6 +3,7 @@ export enum Status {
   SELECT_GAME,
   CREATE_ROOM,
   JOIN_ROOM,
+  PREJOIN_ROOM,
   PLAY_GAME,
 }
 

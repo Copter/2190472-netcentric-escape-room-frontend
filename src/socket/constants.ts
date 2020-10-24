@@ -4,4 +4,5 @@ import { Program } from "../interfaces";
 export const initialProgram: Program = {
   game: null,
   myPlayer: null,
+  roomID: null,
 };
