@@ -7,8 +7,10 @@ const useMainController = () => {
   const { programData } = useContext(SocketContext);
 
   useEffect(() => {
-    if (programData.myPlayer) {
+    if (programData.game) {
       setStatus(Status.PLAY_GAME);
+    } else if (programData.myPlayer) {
+      setStatus(Status.JOIN_LOBBY);
     } else if (programData.roomID) {
       setStatus(Status.JOIN_ROOM);
     }

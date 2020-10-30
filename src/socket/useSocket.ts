@@ -27,6 +27,9 @@ const useSocket = () => {
     socket.on(Event.PLAY_GAME, (data: Game) => {
       dispatch({ type: Event.PLAY_GAME, payload: data });
     });
+    socket.on(Event.JOIN_LOBBY, (data: Game) => {
+      dispatch({ type: Event.JOIN_LOBBY, payload: data });
+    });
   }, [socket]);
 
   return {

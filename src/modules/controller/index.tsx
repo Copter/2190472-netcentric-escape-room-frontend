@@ -3,6 +3,7 @@ import { Status } from "../../constants";
 import CreateRoom from "../createRoom";
 import Game from "../game";
 import JoinRoom from "../joinGame";
+import Lobby from "../lobby";
 import PrejoinRoom from "../prejoinRoom";
 import SelectGame from "../selectGame";
 import useMainController from "./useMainController";
@@ -19,6 +20,8 @@ const Controller = () => {
       return <PrejoinRoom />;
     case Status.JOIN_ROOM:
       return <JoinRoom />;
+    case Status.JOIN_LOBBY:
+      return <Lobby />;
     case Status.PLAY_GAME:
       return <Game />;
     default:

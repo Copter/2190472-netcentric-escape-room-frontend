@@ -17,6 +17,8 @@ const socketReducer: Reducer<Program, DispatchEvent> = (state, action) => {
       return { ...state, game: action.payload as Game };
     case Event.PREJOIN_ROOM:
       return { ...state, roomID: action.payload };
+    case Event.JOIN_LOBBY:
+      return { ...state, myPlayer: action.payload as Player };
     default:
       throw new Error();
   }
