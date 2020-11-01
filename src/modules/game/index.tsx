@@ -4,7 +4,7 @@ import useGame from "./useGame";
 import "./index.css";
 
 interface PropTypes {
-  value: number;
+  value: string;
   onClick: React.MouseEventHandler<HTMLButtonElement>;
 }
 
@@ -17,48 +17,67 @@ const Square = ({ value, onClick }: PropTypes) => {
 };
 
 const Board = () => {
-  const [squares, setSquares] = useState<Array<number>>(Array(25).fill(null));
+  const [squares, setSquares] = useState<string[][]>(
+    Array(5)
+      .fill(null)
+      .map(() => new Array(5).fill(null))
+  );
 
-  const renderSquare = (i: number) => {
-    return <Square value={squares[i]} onClick={() => {}} />;
+  const handleClickSquare = (posX: number, posY: number) => {
+    const items = [...squares];
+    const item = { ...items[posX], [posY]: "X" };
+    // item[posY] = "X";
+    items[posX] = item;
+    setSquares(items);
+  };
+
+  const renderSquare = (posX: number, posY: number) => {
+    return (
+      <Square
+        value={squares[posX][posY]}
+        onClick={() => {
+          handleClickSquare(posX, posY);
+        }}
+      />
+    );
   };
 
   return (
     <div>
       <div className="board-row">
-        {renderSquare(0)}
-        {renderSquare(1)}
-        {renderSquare(2)}
-        {renderSquare(3)}
-        {renderSquare(4)}
+        {renderSquare(0, 0)}
+        {renderSquare(1, 0)}
+        {renderSquare(2, 0)}
+        {renderSquare(3, 0)}
+        {renderSquare(4, 0)}
       </div>
       <div className="board-row">
-        {renderSquare(5)}
-        {renderSquare(6)}
-        {renderSquare(7)}
-        {renderSquare(8)}
-        {renderSquare(9)}
+        {renderSquare(0, 1)}
+        {renderSquare(1, 1)}
+        {renderSquare(2, 1)}
+        {renderSquare(3, 1)}
+        {renderSquare(4, 1)}
       </div>
       <div className="board-row">
-        {renderSquare(10)}
-        {renderSquare(11)}
-        {renderSquare(12)}
-        {renderSquare(13)}
-        {renderSquare(14)}
+        {renderSquare(0, 2)}
+        {renderSquare(1, 2)}
+        {renderSquare(2, 2)}
+        {renderSquare(3, 2)}
+        {renderSquare(4, 2)}
       </div>
       <div className="board-row">
-        {renderSquare(15)}
-        {renderSquare(16)}
-        {renderSquare(17)}
-        {renderSquare(18)}
-        {renderSquare(19)}
+        {renderSquare(0, 3)}
+        {renderSquare(1, 3)}
+        {renderSquare(2, 3)}
+        {renderSquare(3, 3)}
+        {renderSquare(4, 3)}
       </div>
       <div className="board-row">
-        {renderSquare(20)}
-        {renderSquare(21)}
-        {renderSquare(22)}
-        {renderSquare(23)}
-        {renderSquare(24)}
+        {renderSquare(0, 4)}
+        {renderSquare(1, 4)}
+        {renderSquare(2, 4)}
+        {renderSquare(3, 4)}
+        {renderSquare(4, 4)}
       </div>
     </div>
   );
