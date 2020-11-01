@@ -5,4 +5,5 @@ export const initialProgram: Program = {
   game: null,
   myPlayer: null,
   roomID: null,
+  gameStart: false,
 };

@@ -7,7 +7,7 @@ const useMainController = () => {
   const { programData } = useContext(SocketContext);
 
   useEffect(() => {
-    if (programData.game) {
+    if (programData.gameStart) {
       setStatus(Status.PLAY_GAME);
     } else if (programData.myPlayer) {
       setStatus(Status.JOIN_LOBBY);

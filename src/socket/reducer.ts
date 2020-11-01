@@ -4,21 +4,41 @@ import { Event } from "../constants";
 
 interface DispatchEvent {
   type: Event;
-  payload: any;
+  payload: Game | Player | Player[] | null | string;
 }
 
 const socketReducer: Reducer<Program, DispatchEvent> = (state, action) => {
   switch (action.type) {
-    case Event.CREATE_GAME:
-      return { ...state, game: null, myPlayer: action.payload as Player };
-    case Event.JOIN_ROOM:
-      return { ...state, game: null, myPlayer: action.payload as Player };
-    case Event.PLAY_GAME:
-      return { ...state, game: action.payload as Game };
-    case Event.PREJOIN_ROOM:
-      return { ...state, roomID: action.payload };
-    case Event.JOIN_LOBBY:
-      return { ...state, myPlayer: action.payload as Player };
+    case Event.FIND_LOBBY:
+      return { ...state, game: null, roomID: action.payload as string };
+    case Event.PLAY_GAME: {
+      console.log(Event.PLAY_GAME, action.payload);
+      const game = action.payload as Game;
+      const { players, roomCode } = game;
+      const myPlayer =
+        players.find(({ id }) => id === state.myPlayer?.id) ||
+        players[players.length - 1];
+      return {
+        ...state,
+        myPlayer,
+        game: action.payload as Game,
+        gameStart: true,
+      };
+    }
+    case Event.JOIN_LOBBY: {
+      const game = action.payload as Game;
+      const { players, roomCode } = game;
+      const myPlayer =
+        players.find(({ id }) => id === state.myPlayer?.id) ||
+        players[players.length - 1];
+      return {
+        ...state,
+        roomID: roomCode,
+        game,
+        myPlayer,
+        gameStart: false,
+      };
+    }
     default:
       throw new Error();
   }

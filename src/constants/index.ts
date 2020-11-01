@@ -10,9 +10,11 @@ export enum Status {
 
 export enum Event {
   CREATE_GAME = "create game",
-  PREJOIN_ROOM = "prejoin room",
+  FIND_LOBBY = "find lobby",
   JOIN_ROOM = "join room",
   PLAY_GAME = "play game",
+  RESET_GAME = "reset game",
   JOIN_LOBBY = "join lobby",
-  CHANGE_COSTOME = "change costume",
+  CHANGE_COSTUME = "change costume",
+  PLAY_AGAIN = "play again",
 }
