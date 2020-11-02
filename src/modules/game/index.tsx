@@ -1,99 +1,117 @@
-import React, { useContext, useState } from "react";
-import { isPropertySignature } from "typescript";
-import useGame from "./useGame";
+/* eslint-disable react/no-array-index-key */
+/* eslint-disable jsx-a11y/click-events-have-key-events */
+import React, { ReactNode, useContext, useMemo } from "react";
 import "./index.css";
+import { SocketContext } from "../../socket/context";
+import { Event } from "../../constants";
+import { Player, Game, PlayerType, Position } from "../../interfaces";
+import Object from "./components/Object";
 
-interface PropTypes {
-  value: string;
+interface SquarePropTypes {
+  children: ReactNode;
   onClick: React.MouseEventHandler<HTMLButtonElement>;
 }
 
-const Square = ({ value, onClick }: PropTypes) => {
+const Square = ({ children, onClick }: SquarePropTypes) => {
   return (
     <button type="button" className="square" onClick={onClick}>
-      {value}
+      {children}
     </button>
   );
 };
 
-const Board = () => {
-  const [squares, setSquares] = useState<string[][]>(
-    Array(5)
-      .fill(null)
-      .map(() => new Array(5).fill(null))
-  );
+interface PropTypes {
+  onGameChange: (player: Player) => void;
+  game: Game;
+  currentPlayer: Player;
+}
 
-  const handleClickSquare = (posX: number, posY: number) => {
-    const items = [...squares];
-    const item = { ...items[posX], [posY]: "X" };
-    // item[posY] = "X";
-    items[posX] = item;
-    setSquares(items);
+const Board = ({ onGameChange, game, currentPlayer }: PropTypes) => {
+  const handleClickSquare = (posX_: number, posY_: number) => {
+    const player = {
+      ...currentPlayer,
+      position: { x: posX_, y: posY_ },
+    };
+    onGameChange(player);
+  };
+  const squares = Array(5)
+    .fill(null)
+    .map((_, x) => (
+      <div key={x} className="board-row">
+        {new Array(5).fill(null).map((__, y) => {
+          const prisonerPosition = game.players.find(
+            ({ playerType }) => playerType === PlayerType.PRISONER
+          )?.position;
+          const warderPosition = game.players.find(
+            ({ playerType }) => playerType === PlayerType.WARDER
+          )?.position;
+
+          return (
+            // eslint-disable-next-line jsx-a11y/no-static-element-interactions
+            <Square key={`${x} : ${y}`} onClick={() => handleClickSquare(x, y)}>
+              <Object
+                position={{ x, y }}
+                exitPosition={game.exitPosition}
+                obstaclePositions={game.obstaclePositions}
+                prisonerPosition={prisonerPosition as Position}
+                warderPosition={warderPosition as Position}
+              />
+            </Square>
+          );
+        })}
+      </div>
+    ));
+
+  return <div>{squares}</div>;
+};
+
+const GameBoard = () => {
+  const { emit, programData } = useContext(SocketContext);
+
+  const onGameChange = (player: Player) => {
+    emit(Event.PLAY_GAME, player);
   };
 
-  const renderSquare = (posX: number, posY: number) => {
-    return (
-      <Square
-        value={squares[posX][posY]}
-        onClick={() => {
-          handleClickSquare(posX, posY);
-        }}
-      />
-    );
+  const playAgain = () => {
+    emit(Event.PLAY_AGAIN, programData.game);
   };
+
+  const resetGame = () => {
+    emit(Event.RESET_GAME, programData.game);
+  };
+
+  const isRoomOwner = programData.myPlayer === programData.game?.players[0];
 
   return (
     <div>
-      <div className="board-row">
-        {renderSquare(0, 0)}
-        {renderSquare(1, 0)}
-        {renderSquare(2, 0)}
-        {renderSquare(3, 0)}
-        {renderSquare(4, 0)}
-      </div>
-      <div className="board-row">
-        {renderSquare(0, 1)}
-        {renderSquare(1, 1)}
-        {renderSquare(2, 1)}
-        {renderSquare(3, 1)}
-        {renderSquare(4, 1)}
-      </div>
-      <div className="board-row">
-        {renderSquare(0, 2)}
-        {renderSquare(1, 2)}
-        {renderSquare(2, 2)}
-        {renderSquare(3, 2)}
-        {renderSquare(4, 2)}
-      </div>
-      <div className="board-row">
-        {renderSquare(0, 3)}
-        {renderSquare(1, 3)}
-        {renderSquare(2, 3)}
-        {renderSquare(3, 3)}
-        {renderSquare(4, 3)}
-      </div>
-      <div className="board-row">
-        {renderSquare(0, 4)}
-        {renderSquare(1, 4)}
-        {renderSquare(2, 4)}
-        {renderSquare(3, 4)}
-        {renderSquare(4, 4)}
-      </div>
+      timer: {programData.game?.timer}
+      currentPlayer: {PlayerType[programData.game?.currentPlayer as PlayerType]}
+      score: {programData.myPlayer?.victory}
+      game: {programData?.roomID}
+      {isRoomOwner && (
+        <button onClick={resetGame} type="button">
+          Reset Game
+        </button>
+      )}
+      {programData.game?.winner === null && (
+        <div className="board">
+          <Board
+            onGameChange={onGameChange}
+            currentPlayer={programData.myPlayer as Player}
+            game={programData.game as Game}
+          />
+        </div>
+      )}
+      {programData.game?.winner !== null && (
+        <>
+          <div> Winner {PlayerType[programData.game?.winner as number]}</div>
+          <button onClick={playAgain} type="button">
+            Play Again
+          </button>
+        </>
+      )}
     </div>
   );
 };
 
-const Game = () => {
-  const game = useGame();
-
-  return (
-    <div>
-      game: {game?.roomCode}
-      <div className="board">
-        <Board />
-      </div>
-    </div>
-  );
-};
-
-export default Game;
+export default GameBoard;

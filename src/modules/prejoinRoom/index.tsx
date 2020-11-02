@@ -12,7 +12,7 @@ const PrejoinRoom = () => {
   };
 
   const handlePrejoinGame = () => {
-    emit(Event.PREJOIN_ROOM, roomId);
+    emit(Event.FIND_LOBBY, roomId);
     setSubmitted(true);
   };
 

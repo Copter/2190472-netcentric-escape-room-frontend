@@ -12,14 +12,15 @@ const useSocket = () => {
     game: null,
     myPlayer: null,
     roomID: null,
+    gameStart: false,
   });
 
   useEffect(() => {
     socket.on(Event.CREATE_GAME, (data: Player) => {
       dispatch({ type: Event.CREATE_GAME, payload: data });
     });
-    socket.on(Event.PREJOIN_ROOM, (status: boolean) => {
-      dispatch({ type: Event.PREJOIN_ROOM, payload: status });
+    socket.on(Event.FIND_LOBBY, (roomID: string) => {
+      dispatch({ type: Event.FIND_LOBBY, payload: roomID });
     });
     socket.on(Event.JOIN_ROOM, (data: Player) => {
       dispatch({ type: Event.JOIN_ROOM, payload: data });
