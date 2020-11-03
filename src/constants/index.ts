@@ -16,5 +16,6 @@ export enum Event {
   RESET_GAME = "reset game",
   JOIN_LOBBY = "join lobby",
   CHANGE_COSTUME = "change costume",
+  CHANGE_TIMER = "change timer",
   PLAY_AGAIN = "play again",
 }

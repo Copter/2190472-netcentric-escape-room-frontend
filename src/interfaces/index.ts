@@ -27,6 +27,7 @@ export interface Game {
   exitPosition: Position;
   obstaclePositions: Array<Position>;
   timer: number;
+  maxTimer: number;
   winner: PlayerType | null;
   currentPlayer: PlayerType;
   roomCode: string;
