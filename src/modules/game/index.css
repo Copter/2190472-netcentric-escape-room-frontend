@@ -8,7 +8,9 @@
   /* height: 48px; */
   /* margin-right: -1px; */
   /* margin-top: -1px; */
-  padding: 50px;
+  min-width: 100px;
+  min-height: 100px;
+  /* padding: 50px; */
   text-align: center;
   /* width: 48px; */
 }
@@ -17,4 +19,23 @@
   clear: both;
   content: "";
   display: table;
+}
+
+.board {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100%;
+}
+
+.MidTopContainer {
+  text-align: center;
+}
+
+.WhoseTurnContainer {
+  font-size: 32px;
+}
+
+.TimerContainer {
+  font-size: 72px;
 }

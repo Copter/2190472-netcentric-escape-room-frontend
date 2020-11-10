@@ -1,6 +1,6 @@
 /* eslint-disable react/no-array-index-key */
 /* eslint-disable jsx-a11y/click-events-have-key-events */
-import React, { ReactNode, useContext, useMemo } from "react";
+import React, { ReactNode, useContext } from "react";
 import "./index.css";
 import { SocketContext } from "../../socket/context";
 import { Event } from "../../constants";
@@ -84,8 +84,12 @@ const GameBoard = () => {
 
   return (
     <div>
-      timer: {programData.game?.timer}
-      currentPlayer: {PlayerType[programData.game?.currentPlayer as PlayerType]}
+      <div className="MidTopContainer">
+        <div className="WhoseTurnContainer">
+          {PlayerType[programData.game?.currentPlayer as PlayerType]}&#39;S TURN
+        </div>
+        <div className="TimerContainer">{programData.game?.timer}</div>
+      </div>
       score: {programData.myPlayer?.victory}
       game: {programData?.roomID}
       {isRoomOwner && (

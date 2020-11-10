@@ -19,3 +19,8 @@ export enum Event {
   CHANGE_TIMER = "change timer",
   PLAY_AGAIN = "play again",
 }
+
+export enum BackgroundColor {
+  BLUE = "#ffffff",
+  BROWN = "#000000",
+}

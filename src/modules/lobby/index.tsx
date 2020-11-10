@@ -1,6 +1,7 @@
 import React, { useContext, useState } from "react";
 import { SocketContext } from "../../socket/context";
 import { Event } from "../../constants";
+import { Player } from "../../interfaces";
 
 const Lobby = () => {
   const { emit, programData } = useContext(SocketContext);
@@ -27,19 +28,18 @@ const Lobby = () => {
 
   return (
     <div>
-      currentPlayer:{" "}
-      {programData.game?.players.map((player) => (
-        <div>{player.name}</div>
+      {programData.game?.players.map((player: Player) => (
+        <div>currentPlayer: {player.name}</div>
       ))}
       roomCode: {programData.roomID} <br />
       {hatType}
       <button type="button" onClick={changeCostome}>
         Change hat type
       </button>
-      timer: {programData.game?.maxTimer}
+      <div>timer: {programData.game?.maxTimer}</div>
       {isRoomOwner && (
         <div>
-          new timer:{" "}
+          new timer:
           <input
             value={timer}
             onChange={(e) => setTimer(Number(e.target.value))}
