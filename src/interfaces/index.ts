@@ -1,5 +1,3 @@
-import { BackgroundColor } from "../constants";
-
 export enum PlayerType {
   WARDER,
   PRISONER,

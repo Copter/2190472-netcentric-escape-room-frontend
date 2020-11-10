@@ -21,6 +21,6 @@ export enum Event {
 }
 
 export enum BackgroundColor {
-  BLUE = "#ffffff",
-  BROWN = "#000000",
+  BLUE = "#8493a7",
+  BROWN = "#b17e5e",
 }
