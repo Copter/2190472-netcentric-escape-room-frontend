@@ -123,9 +123,11 @@ const GameBoard = () => {
             {programData.game?.players[1].name} score:{" "}
             {programData.game?.players[1]?.victory}
           </div>
-          <button onClick={playAgain} type="button">
-            Play Again
-          </button>
+          {programData.myPlayer?.playerType !== PlayerType.SPECTATOR && (
+            <button onClick={playAgain} type="button">
+              Play Again
+            </button>
+          )}
         </>
       )}
     </div>

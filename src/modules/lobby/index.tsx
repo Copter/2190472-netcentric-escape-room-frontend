@@ -1,7 +1,7 @@
 import React, { useContext, useState } from "react";
 import { SocketContext } from "../../socket/context";
 import { Event } from "../../constants";
-import { HatType, Player } from "../../interfaces";
+import { HatType, Player, PlayerType } from "../../interfaces";
 import { generateCharacterUrl } from "../../commons/utils";
 
 const Lobby = () => {
@@ -58,14 +58,22 @@ const Lobby = () => {
 
   return (
     <div>
-      {programData.game?.players.map((player: Player) => (
-        <div>currentPlayer: {player.name}</div>
-      ))}
+      {programData.game?.players.map((player: Player) =>
+        player.playerType !== PlayerType.SPECTATOR ? (
+          <div>Player: {player.name}</div>
+        ) : (
+          <div>Spectator: {player.name}</div>
+        )
+      )}
       roomCode: {programData.roomID} <br />
-      <img src={characterUrl} alt="character" />
-      <button type="button" onClick={changeCostome}>
-        Change Custome
-      </button>
+      {programData.myPlayer?.playerType !== PlayerType.SPECTATOR && (
+        <>
+          <img src={characterUrl} alt="character" />
+          <button type="button" onClick={changeCostome}>
+            Change Custome
+          </button>
+        </>
+      )}
       <div>timer: {programData.game?.maxTimer}</div>
       {isRoomOwner && (
         <div>
