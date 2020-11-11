@@ -1,17 +1,20 @@
-import React, { useContext, useState } from "react";
+import React, { useContext, useMemo, useState } from "react";
 import { SocketContext } from "../../socket/context";
 import { Event } from "../../constants";
 
 const JoinRoom = () => {
   const { emit, programData } = useContext(SocketContext);
   const [playerName, setPlayerName] = useState<string>("");
+  const audio = useMemo(() => new Audio("/PrisonSlamSFX.mp3"), []);
 
   const handleNameChange = (event: React.ChangeEvent<HTMLInputElement>) => {
     setPlayerName(event.target.value);
+    audio.play();
   };
 
   const handleJoinGame = () => {
     emit(Event.JOIN_ROOM, { playerName, roomCode: programData.roomID });
+    audio.play();
   };
 
   return (

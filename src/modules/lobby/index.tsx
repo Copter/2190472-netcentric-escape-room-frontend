@@ -1,32 +1,37 @@
-import React, { useContext, useState } from "react";
+import React, { useContext, useMemo, useState } from "react";
 import { SocketContext } from "../../socket/context";
 import { Event } from "../../constants";
-import { HatType, Player } from "../../interfaces";
+import { Player, PlayerType } from "../../interfaces";
 import { generateCharacterUrl } from "../../commons/utils";
 
 const Lobby = () => {
   const { emit, programData } = useContext(SocketContext);
   const [timer, setTimer] = useState(programData.game?.maxTimer);
   const [isTutorialStart, setTutorialStart] = useState(true);
+  const audio = useMemo(() => new Audio("/PrisonSlamSFX.mp3"), []);
 
   const hatType = programData.myPlayer?.hatType || 0;
 
   const changeCostome = () => {
     const newPlayer = { ...programData.myPlayer, hatType: 1 - hatType };
     emit(Event.CHANGE_COSTUME, newPlayer);
+    audio.play();
   };
 
   const changeTimer = () => {
     const data = { player: programData.myPlayer, timer };
     emit(Event.CHANGE_TIMER, data);
+    audio.play();
   };
 
   const startGame = () => {
     emit(Event.PLAY_GAME, programData.myPlayer);
+    audio.play();
   };
 
   const doneTutorial = () => {
     setTutorialStart(false);
+    audio.play();
   };
 
   const isRoomOwner = programData.myPlayer === programData.game?.players[0];
@@ -58,14 +63,22 @@ const Lobby = () => {
 
   return (
     <div>
-      {programData.game?.players.map((player: Player) => (
-        <div>currentPlayer: {player.name}</div>
-      ))}
+      {programData.game?.players.map((player: Player) =>
+        player.playerType !== PlayerType.SPECTATOR ? (
+          <div>Player: {player.name}</div>
+        ) : (
+          <div>Spectator: {player.name}</div>
+        )
+      )}
       roomCode: {programData.roomID} <br />
-      <img src={characterUrl} alt="character" />
-      <button type="button" onClick={changeCostome}>
-        Change Custome
-      </button>
+      {programData.myPlayer?.playerType !== PlayerType.SPECTATOR && (
+        <>
+          <img src={characterUrl} alt="character" />
+          <button type="button" onClick={changeCostome}>
+            Change Custome
+          </button>
+        </>
+      )}
       <div>timer: {programData.game?.maxTimer}</div>
       {isRoomOwner && (
         <div>

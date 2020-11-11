@@ -1,4 +1,4 @@
-import React, { useContext } from "react";
+import React, { useContext, useMemo } from "react";
 import { BackgroundColor } from "../../constants";
 import { ProgramContext } from "../../program/context";
 import "./index.css";
@@ -9,6 +9,7 @@ interface PropTypes {
 
 const Background = ({ children }: PropTypes) => {
   const { background, setBackground } = useContext(ProgramContext);
+  const audio = useMemo(() => new Audio("/PrisonSlamSFX.mp3"), []);
 
   const changeBackground = () => {
     setBackground(
@@ -16,6 +17,7 @@ const Background = ({ children }: PropTypes) => {
         ? BackgroundColor.BROWN
         : BackgroundColor.BLUE
     );
+    audio.play();
   };
 
   const styles = {

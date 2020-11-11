@@ -1,6 +1,6 @@
 /* eslint-disable react/no-array-index-key */
 /* eslint-disable jsx-a11y/click-events-have-key-events */
-import React, { ReactNode, useContext, useMemo, useState } from "react";
+import React, { ReactNode, useContext, useMemo } from "react";
 import "./index.css";
 import { SocketContext } from "../../socket/context";
 import { Event } from "../../constants";
@@ -28,7 +28,7 @@ interface PropTypes {
 }
 
 const Board = ({ onGameChange, game, currentPlayer }: PropTypes) => {
-  const audio = useMemo(() => new Audio("/christmas.mp3"), []);
+  const audio = useMemo(() => new Audio("/PrisonSlamSFX.mp3"), []);
   const handleClickSquare = (posX_: number, posY_: number) => {
     const player = {
       ...currentPlayer,
@@ -74,17 +74,21 @@ const Board = ({ onGameChange, game, currentPlayer }: PropTypes) => {
 
 const GameBoard = () => {
   const { emit, programData } = useContext(SocketContext);
+  const audio = useMemo(() => new Audio("/PrisonSlamSFX.mp3"), []);
 
   const onGameChange = (player: Player) => {
     emit(Event.PLAY_GAME, player);
+    audio.play();
   };
 
   const playAgain = () => {
     emit(Event.PLAY_AGAIN, programData.game);
+    audio.play();
   };
 
   const resetGame = () => {
     emit(Event.RESET_GAME, programData.game);
+    audio.play();
   };
 
   const isRoomOwner = programData.myPlayer === programData.game?.players[0];
@@ -97,8 +101,7 @@ const GameBoard = () => {
         </div>
         <div className="TimerContainer">{programData.game?.timer}</div>
       </div>
-      score: {programData.myPlayer?.victory}
-      game: {programData?.roomID}
+      <div>game: {programData?.roomID}</div>
       {isRoomOwner && (
         <button onClick={resetGame} type="button">
           Reset Game
@@ -116,9 +119,19 @@ const GameBoard = () => {
       {programData.game?.winner !== null && (
         <>
           <div> Winner {PlayerType[programData.game?.winner as number]}</div>
-          <button onClick={playAgain} type="button">
-            Play Again
-          </button>
+          <div>
+            {programData.game?.players[0].name} score:{" "}
+            {programData.game?.players[0]?.victory}
+          </div>
+          <div>
+            {programData.game?.players[1].name} score:{" "}
+            {programData.game?.players[1]?.victory}
+          </div>
+          {programData.myPlayer?.playerType !== PlayerType.SPECTATOR && (
+            <button onClick={playAgain} type="button">
+              Play Again
+            </button>
+          )}
         </>
       )}
     </div>

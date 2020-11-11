@@ -1,5 +1,5 @@
 import React from "react";
-import { Player, Position } from "../../../interfaces";
+import { Position } from "../../../interfaces";
 import Exit from "./Exit";
 import Obstacle from "./Obstable";
 import Prisoner from "./Prisoner";
