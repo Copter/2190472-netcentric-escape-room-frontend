@@ -14,6 +14,7 @@ const SelectGame = ({ selectGame }: PropTypes) => {
 
   return (
     <div>
+      <div>Welcome to Escape Plan!</div>
       <button type="button" onClick={() => onSelectGame(Status.CREATE_ROOM)}>
         Create Room
       </button>
