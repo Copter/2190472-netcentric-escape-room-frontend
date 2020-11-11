@@ -97,8 +97,7 @@ const GameBoard = () => {
         </div>
         <div className="TimerContainer">{programData.game?.timer}</div>
       </div>
-      score: {programData.myPlayer?.victory}
-      game: {programData?.roomID}
+      <div>game: {programData?.roomID}</div>
       {isRoomOwner && (
         <button onClick={resetGame} type="button">
           Reset Game
@@ -116,6 +115,14 @@ const GameBoard = () => {
       {programData.game?.winner !== null && (
         <>
           <div> Winner {PlayerType[programData.game?.winner as number]}</div>
+          <div>
+            {programData.game?.players[0].name} score:{" "}
+            {programData.game?.players[0]?.victory}
+          </div>
+          <div>
+            {programData.game?.players[1].name} score:{" "}
+            {programData.game?.players[1]?.victory}
+          </div>
           <button onClick={playAgain} type="button">
             Play Again
           </button>
