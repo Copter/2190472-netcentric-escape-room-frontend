@@ -1,6 +1,6 @@
 .square {
   background: #fff;
-  border: 1px solid #999;
+  border: 0px solid #999;
   float: left;
   /* font-size: 24px; */
   font-weight: bold;
@@ -13,6 +13,8 @@
   /* padding: 50px; */
   text-align: center;
   /* width: 48px; */
+  /* background-image: url(/images/brown_tile1.PNG); */
+  /* background-size: 100px 100px; */
 }
 
 .board-row:after {
