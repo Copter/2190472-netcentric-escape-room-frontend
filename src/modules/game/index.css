@@ -1,6 +1,6 @@
 .square {
   background: #fff;
-  border: 1px solid #999;
+  border: 0px solid #999;
   float: left;
   /* font-size: 24px; */
   font-weight: bold;
@@ -8,13 +8,36 @@
   /* height: 48px; */
   /* margin-right: -1px; */
   /* margin-top: -1px; */
-  padding: 50px;
+  min-width: 100px;
+  min-height: 100px;
+  /* padding: 50px; */
   text-align: center;
   /* width: 48px; */
+  /* background-image: url(/images/brown_tile1.PNG); */
+  /* background-size: 100px 100px; */
 }
 
 .board-row:after {
   clear: both;
   content: "";
   display: table;
+}
+
+.board {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100%;
+}
+
+.MidTopContainer {
+  text-align: center;
+}
+
+.WhoseTurnContainer {
+  font-size: 32px;
+}
+
+.TimerContainer {
+  font-size: 72px;
 }
