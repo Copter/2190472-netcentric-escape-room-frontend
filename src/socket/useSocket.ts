@@ -1,7 +1,7 @@
-import { useEffect, useMemo, useReducer, useState } from "react";
+import { useEffect, useReducer } from "react";
 import socketIOClient from "socket.io-client";
 import { Event } from "../constants";
-import { Game, Player } from "../interfaces";
+import { Game } from "../interfaces";
 import socketReducer from "./reducer";
 
 const ENDPOINT = "http://127.0.0.1:8000";
