@@ -92,12 +92,16 @@ const GameBoard = () => {
   };
 
   const isRoomOwner = programData.myPlayer === programData.game?.players[0];
+  const isMyTurn =
+    programData.game?.currentPlayer === programData.myPlayer?.playerType;
+  const currentTurn = PlayerType[programData.game?.currentPlayer as PlayerType];
 
   return (
     <div>
       <div className="MidTopContainer">
         <div className="WhoseTurnContainer">
-          {PlayerType[programData.game?.currentPlayer as PlayerType]}&#39;S TURN
+          <div>{currentTurn}&#39;S TURN</div>
+          <div>{isMyTurn ? `Your turn` : `Waiting for opponent's turn`}</div>
         </div>
         <div className="TimerContainer">{programData.game?.timer}</div>
       </div>

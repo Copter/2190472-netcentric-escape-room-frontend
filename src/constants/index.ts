@@ -18,6 +18,7 @@ export enum Event {
   CHANGE_COSTUME = "change costume",
   CHANGE_TIMER = "change timer",
   PLAY_AGAIN = "play again",
+  CURRENT_USERS_COUNT = "current users count",
 }
 
 export enum BackgroundColor {

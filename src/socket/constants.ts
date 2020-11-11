@@ -6,4 +6,5 @@ export const initialProgram: Program = {
   myPlayer: null,
   roomID: null,
   gameStart: false,
+  userCounts: 0,
 };

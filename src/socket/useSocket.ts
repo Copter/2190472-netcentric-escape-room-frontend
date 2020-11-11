@@ -14,6 +14,7 @@ const useSocket = () => {
     myPlayer: null,
     roomID: null,
     gameStart: false,
+    userCounts: 0,
   });
 
   useEffect(() => {
@@ -25,6 +26,9 @@ const useSocket = () => {
     });
     socket.on(Event.JOIN_LOBBY, (data: Game) => {
       dispatch({ type: Event.JOIN_LOBBY, payload: data });
+    });
+    socket.on(Event.CURRENT_USERS_COUNT, (count: number) => {
+      dispatch({ type: Event.CURRENT_USERS_COUNT, payload: count });
     });
   }, []);
 

@@ -39,4 +39,5 @@ export interface Program {
   myPlayer: Player | null;
   roomID: null | string;
   gameStart: boolean;
+  userCounts: number;
 }
