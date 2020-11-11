@@ -1,6 +1,7 @@
 import React, { useContext } from "react";
 import { BackgroundColor } from "../../constants";
 import { ProgramContext } from "../../program/context";
+import "./index.css";
 
 interface PropTypes {
   children: React.ReactNode;
@@ -19,16 +20,16 @@ const Background = ({ children }: PropTypes) => {
 
   const styles = {
     backgroundColor: background,
-    width: "100vw",
-    height: "100vh",
   };
 
   return (
-    <div style={styles}>
-      <button type="button" onClick={changeBackground}>
-        Change Background
-      </button>
-      {children}
+    <div className="background" style={styles}>
+      <div className="background-content">
+        <button type="button" onClick={changeBackground}>
+          Change Background
+        </button>
+        {children}
+      </div>
     </div>
   );
 };

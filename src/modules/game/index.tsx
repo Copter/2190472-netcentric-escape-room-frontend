@@ -1,11 +1,12 @@
 /* eslint-disable react/no-array-index-key */
 /* eslint-disable jsx-a11y/click-events-have-key-events */
-import React, { ReactNode, useContext } from "react";
+import React, { ReactNode, useContext, useMemo, useState } from "react";
 import "./index.css";
 import { SocketContext } from "../../socket/context";
 import { Event } from "../../constants";
 import { Player, Game, PlayerType, Position } from "../../interfaces";
 import Object from "./components/Object";
+import { generateCharacterUrl } from "../../commons/utils";
 
 interface SquarePropTypes {
   children: ReactNode;
@@ -27,11 +28,13 @@ interface PropTypes {
 }
 
 const Board = ({ onGameChange, game, currentPlayer }: PropTypes) => {
+  const audio = useMemo(() => new Audio("/christmas.mp3"), []);
   const handleClickSquare = (posX_: number, posY_: number) => {
     const player = {
       ...currentPlayer,
       position: { x: posX_, y: posY_ },
     };
+    audio.play();
     onGameChange(player);
   };
   const squares = Array(5)
@@ -39,12 +42,14 @@ const Board = ({ onGameChange, game, currentPlayer }: PropTypes) => {
     .map((_, x) => (
       <div key={x} className="board-row">
         {new Array(5).fill(null).map((__, y) => {
-          const prisonerPosition = game.players.find(
+          const prisoner = game.players.find(
             ({ playerType }) => playerType === PlayerType.PRISONER
-          )?.position;
-          const warderPosition = game.players.find(
+          );
+          const warder = game.players.find(
             ({ playerType }) => playerType === PlayerType.WARDER
-          )?.position;
+          );
+          const warderPosition = warder?.position;
+          const prisonerPosition = prisoner?.position;
 
           return (
             // eslint-disable-next-line jsx-a11y/no-static-element-interactions
@@ -55,6 +60,8 @@ const Board = ({ onGameChange, game, currentPlayer }: PropTypes) => {
                 obstaclePositions={game.obstaclePositions}
                 prisonerPosition={prisonerPosition as Position}
                 warderPosition={warderPosition as Position}
+                prisonerURL={generateCharacterUrl(prisoner as Player)}
+                warderURL={generateCharacterUrl(warder as Player)}
               />
             </Square>
           );

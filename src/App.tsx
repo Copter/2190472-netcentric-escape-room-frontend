@@ -13,7 +13,9 @@ function App() {
       <BackgroundProvider>
         <Background>
           <Controller />
-          <AudioPlayer loop autoPlay src="/bg_music.mp3" volume={0.2} />
+          <div className="audio-player">
+            <AudioPlayer loop autoPlay src="/bg_music.mp3" volume={0.2} />
+          </div>
         </Background>
       </BackgroundProvider>
     </SocketProvider>
