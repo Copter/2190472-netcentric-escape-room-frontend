@@ -1,6 +1,5 @@
 import React from "react";
 import { Position } from "../../../interfaces";
-import isSamePosition from "../utils";
 import Exit from "./Exit";
 import Obstacle from "./Obstable";
 import Prisoner from "./Prisoner";

@@ -3,7 +3,7 @@ import { BackgroundColor } from "../../../constants";
 import { ProgramContext } from "../../../program/context";
 
 const Exit = () => {
-  const { background, setBackground } = useContext(ProgramContext);
+  const { background } = useContext(ProgramContext);
 
   if (background === BackgroundColor.BLUE) {
     return (

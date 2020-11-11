@@ -1,9 +1,11 @@
 import React from "react";
 import "./App.css";
+import AudioPlayer from "react-h5-audio-player";
 import Background from "./commons/components/Background";
 import Controller from "./modules/controller";
 import BackgroundProvider from "./program/context";
 import SocketProvider from "./socket/context";
+import "react-h5-audio-player/lib/styles.css";
 
 function App() {
   return (
@@ -11,6 +13,7 @@ function App() {
       <BackgroundProvider>
         <Background>
           <Controller />
+          <AudioPlayer loop autoPlay src="/bg_music.mp3" volume={0.2} />
         </Background>
       </BackgroundProvider>
     </SocketProvider>

@@ -12,9 +12,8 @@ const socketReducer: Reducer<Program, DispatchEvent> = (state, action) => {
     case Event.FIND_LOBBY:
       return { ...state, game: null, roomID: action.payload as string };
     case Event.PLAY_GAME: {
-      console.log(Event.PLAY_GAME, action.payload);
       const game = action.payload as Game;
-      const { players, roomCode } = game;
+      const { players } = game;
       const myPlayer =
         players.find(({ id }) => id === state.myPlayer?.id) ||
         players[players.length - 1];
