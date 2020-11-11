@@ -3,27 +3,13 @@ import { BackgroundColor } from "../../../constants";
 import { ProgramContext } from "../../../program/context";
 
 const Obstacle = () => {
-  const { background, setBackground } = useContext(ProgramContext);
+  const { background } = useContext(ProgramContext);
 
   if (background === BackgroundColor.BLUE) {
-    return (
-      <img
-        src="/images/blue_obstacle.PNG"
-        alt="Obstacle"
-        width="86px"
-        height="86px"
-      />
-    );
+    return <img src="/images/blue_obstacle.PNG" alt="Obstacle" />;
   }
   if (background === BackgroundColor.BROWN) {
-    return (
-      <img
-        src="/images/brown_obstacle.PNG"
-        alt="Obstacle"
-        width="86px"
-        height="86px"
-      />
-    );
+    return <img src="/images/brown_obstacle.PNG" alt="Obstacle" />;
   }
   return <div>Obstacle</div>;
 };

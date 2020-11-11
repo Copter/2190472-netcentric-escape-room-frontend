@@ -1,6 +1,5 @@
 import React from "react";
-import { Position } from "../../../interfaces";
-import isSamePosition from "../utils";
+import { Player, Position } from "../../../interfaces";
 import Exit from "./Exit";
 import Obstacle from "./Obstable";
 import Prisoner from "./Prisoner";
@@ -12,6 +11,8 @@ interface PropTypes {
   prisonerPosition: Position;
   obstaclePositions: Position[];
   exitPosition: Position;
+  prisonerURL: string;
+  warderURL: string;
 }
 
 const Object = ({
@@ -20,15 +21,17 @@ const Object = ({
   prisonerPosition,
   obstaclePositions,
   exitPosition,
+  prisonerURL,
+  warderURL,
 }: PropTypes) => {
   if (position?.x === warderPosition?.x && position?.y === warderPosition?.y) {
-    return <Warder />;
+    return <Warder url={warderURL} />;
   }
   if (
     position?.x === prisonerPosition?.x &&
     position?.y === prisonerPosition?.y
   ) {
-    return <Prisoner />;
+    return <Prisoner url={prisonerURL} />;
   }
   if (
     obstaclePositions.find(

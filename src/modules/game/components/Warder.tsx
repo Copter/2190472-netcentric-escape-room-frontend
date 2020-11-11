@@ -1,7 +1,11 @@
 import React from "react";
 
-const Warder = () => {
-  return <div>Warder</div>;
+interface PropTypes {
+  url: string;
+}
+
+const Warder = ({ url }: PropTypes) => {
+  return <img src={url} alt="Warder" />;
 };
 
 export default Warder;
