@@ -4,7 +4,7 @@ import { Event } from "../constants";
 
 interface DispatchEvent {
   type: Event;
-  payload: Game | Player | Player[] | null | string;
+  payload: Game | Player | Player[] | null | string | number;
 }
 
 const socketReducer: Reducer<Program, DispatchEvent> = (state, action) => {
@@ -38,6 +38,8 @@ const socketReducer: Reducer<Program, DispatchEvent> = (state, action) => {
         gameStart: false,
       };
     }
+    case Event.CURRENT_USERS_COUNT:
+      return { ...state, userCounts: action.payload as number };
     default:
       throw new Error();
   }
