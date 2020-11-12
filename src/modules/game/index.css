@@ -17,6 +17,16 @@
   /* background-size: 100px 100px; */
 }
 
+.blueSquare {
+  background-image: url(/images/blue_tile1.PNG);
+  background-size: 100px 100px;
+}
+
+.brownSquare {
+  background-image: url(/images/brown_tile1.PNG);
+  background-size: 100px 100px;
+}
+
 img {
   width: 86px;
   height: 86px;

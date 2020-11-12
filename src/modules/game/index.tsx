@@ -3,10 +3,11 @@
 import React, { ReactNode, useContext, useMemo } from "react";
 import "./index.css";
 import { SocketContext } from "../../socket/context";
-import { Event } from "../../constants";
+import { Event, BackgroundColor } from "../../constants";
 import { Player, Game, PlayerType, Position } from "../../interfaces";
 import Object from "./components/Object";
 import { generateCharacterUrl } from "../../commons/utils";
+import { ProgramContext } from "../../program/context";
 
 interface SquarePropTypes {
   children: ReactNode;
@@ -14,6 +15,22 @@ interface SquarePropTypes {
 }
 
 const Square = ({ children, onClick }: SquarePropTypes) => {
+  const { background } = useContext(ProgramContext);
+
+  if (background === BackgroundColor.BLUE) {
+    return (
+      <button type="button" className="square blueSquare" onClick={onClick}>
+        {children}
+      </button>
+    );
+  }
+  if (background === BackgroundColor.BROWN) {
+    return (
+      <button type="button" className="square brownSquare" onClick={onClick}>
+        {children}
+      </button>
+    );
+  }
   return (
     <button type="button" className="square" onClick={onClick}>
       {children}
