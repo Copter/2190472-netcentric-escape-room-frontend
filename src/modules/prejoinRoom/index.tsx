@@ -14,7 +14,7 @@ const PrejoinRoom = () => {
   };
 
   const handlePrejoinGame = () => {
-    emit(Event.FIND_LOBBY, roomId);
+    emit(Event.FIND_LOBBY, roomId.toUpperCase());
     setSubmitted(true);
     audio.play();
   };
