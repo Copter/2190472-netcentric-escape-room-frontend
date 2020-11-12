@@ -105,12 +105,21 @@ const GameBoard = () => {
         </div>
         <div className="TimerContainer">{programData.game?.timer}</div>
       </div>
-      <div>game: {programData?.roomID}</div>
-      {isRoomOwner && (
-        <button onClick={resetGame} type="button">
-          Reset Game
-        </button>
-      )}
+      <div>
+        {" "}
+        {isRoomOwner && (
+          <div className="topRightDiv">
+            <button onClick={resetGame} type="button">
+              Reset Game
+            </button>
+            {" | Room Code: "}
+            {programData?.roomID}
+          </div>
+        )}
+        {!isRoomOwner && (
+          <div className="topRightDiv">Room Code: {programData?.roomID}</div>
+        )}
+      </div>
       {programData.game?.winner === null && (
         <div className="board">
           <Board
