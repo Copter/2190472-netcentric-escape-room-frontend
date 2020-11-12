@@ -91,11 +91,14 @@ const Lobby = () => {
       {programData.myPlayer?.playerType !== PlayerType.SPECTATOR && (
         <>
           <img src={characterUrl} alt="character" />
+          <br />
           <button className="formBtn24" type="button" onClick={changeCostome}>
             Change Costume
           </button>
         </>
       )}
+      <br />
+      <br />
       <div>Timer: {programData.game?.maxTimer}</div>
       {isRoomOwner && (
         <div>
