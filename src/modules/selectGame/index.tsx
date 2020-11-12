@@ -13,12 +13,21 @@ const SelectGame = ({ selectGame }: PropTypes) => {
   };
 
   return (
-    <div>
+    <div className="formPageShort">
       <div>Welcome to Escape Plan!</div>
-      <button type="button" onClick={() => onSelectGame(Status.CREATE_ROOM)}>
+      <button
+        className="formBtn"
+        type="button"
+        onClick={() => onSelectGame(Status.CREATE_ROOM)}
+      >
         Create Room
       </button>
-      <button type="button" onClick={() => onSelectGame(Status.PREJOIN_ROOM)}>
+      &nbsp;
+      <button
+        className="formBtn"
+        type="button"
+        onClick={() => onSelectGame(Status.PREJOIN_ROOM)}
+      >
         Join Room
       </button>
     </div>

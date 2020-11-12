@@ -36,3 +36,48 @@
     transform: rotate(360deg);
   }
 }
+
+button {
+  border-radius: 9px;
+  border: 0;
+}
+
+.formPageShort {
+  font-size: 72px;
+  text-align: center;
+  min-height: calc(75vh - 172px);
+  padding-top: 25vh;
+}
+
+.rulesPage {
+  font-size: 20px;
+  text-align: center;
+  min-height: calc(100vh - 200px);
+}
+
+.formPageLong {
+  font-size: 24px;
+  text-align: center;
+  min-height: calc(85vh - 172px);
+  padding-top: 15vh;
+}
+
+.formBtn {
+  font-size: 48px;
+  border-radius: 36px;
+  padding: 0 18px 0 18px;
+}
+
+.formField {
+  font-size: 72px;
+}
+
+.formBtn24 {
+  font-size: 24px;
+  border-radius: 12px;
+  padding: 0 6px 0 6px;
+}
+
+.formField24 {
+  font-size: 24px;
+}

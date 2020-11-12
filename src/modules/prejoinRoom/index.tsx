@@ -14,7 +14,7 @@ const PrejoinRoom = () => {
   };
 
   const handlePrejoinGame = () => {
-    emit(Event.FIND_LOBBY, roomId);
+    emit(Event.FIND_LOBBY, roomId.toUpperCase());
     setSubmitted(true);
     audio.play();
   };
@@ -22,9 +22,16 @@ const PrejoinRoom = () => {
   const hasError = submitted && !programData.roomID;
 
   return (
-    <div>
-      Room ID: <input type="text" value={roomId} onChange={handleIdChange} />
-      <button type="submit" onClick={handlePrejoinGame}>
+    <div className="formPageShort">
+      Room ID:{" "}
+      <input
+        className="formField"
+        type="text"
+        value={roomId}
+        onChange={handleIdChange}
+      />
+      <br />
+      <button className="formBtn" type="submit" onClick={handlePrejoinGame}>
         Join Game
       </button>
       <br />

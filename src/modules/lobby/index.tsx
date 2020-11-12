@@ -39,20 +39,37 @@ const Lobby = () => {
 
   if (isTutorialStart) {
     return (
-      <div>
+      <div className="rulesPage">
         <h1>Tutorial</h1>
         <p>
-          Welcome to Escape Plan! Objective of the Game: Warder: Catch the
-          Prisoner before the prisoner escapes! Prisoner: Run for your life to
-          the tunnel! Rules: 1. 10 seconds to move your character to a
-          designated position 2. If the prisoner reached the tunnel, prisoner
-          will win 3. If the warder goes in the same block as the prisoner,
-          warder will win 4. Obstacle blocks are not accessible except the
-          tunnel block(only the prisoner is allowed) Warder Tips: Run close to
-          the predicted tunnel block instead of running after the prisoner
+          <b>Welcome to Escape Plan!</b>
+          <br />
+          Objective of the Game:
+          <br />
+          <b>Warder:</b> Catch the Prisoner before the prisoner escapes!
+          <br />
+          <b>Prisoner:</b> Run for your life to the tunnel!
+          <br />
+          <br />
+          <b>Rules:</b>
+          <br />
+          1. 10 seconds to move your character to a designated position
+          <br />
+          2. If the prisoner reached the tunnel, prisoner will win
+          <br />
+          3. If the warder goes in the same block as the prisoner, warder will
+          win
+          <br />
+          4. Obstacle blocks are not accessible except the tunnel block (only
+          the prisoner is allowed)
+          <br />
+          <br />
+          Warder Tips: Run close to the predicted tunnel block instead of
+          running after the prisoner
+          <br />
           Prisoner Tips: Use obstacle as advantage
         </p>
-        <button type="button" onClick={doneTutorial}>
+        <button className="formBtn" type="button" onClick={doneTutorial}>
           Done
         </button>
       </div>
@@ -62,7 +79,7 @@ const Lobby = () => {
   const characterUrl = generateCharacterUrl(programData.myPlayer);
 
   return (
-    <div>
+    <div className="formPageLong">
       {programData.game?.players.map((player: Player) =>
         player.playerType !== PlayerType.SPECTATOR ? (
           <div>Player: {player.name}</div>
@@ -70,30 +87,32 @@ const Lobby = () => {
           <div>Spectator: {player.name}</div>
         )
       )}
-      roomCode: {programData.roomID} <br />
+      Room Code: {programData.roomID} <br />
       {programData.myPlayer?.playerType !== PlayerType.SPECTATOR && (
         <>
           <img src={characterUrl} alt="character" />
-          <button type="button" onClick={changeCostome}>
-            Change Custome
+          <button className="formBtn24" type="button" onClick={changeCostome}>
+            Change Costume
           </button>
         </>
       )}
-      <div>timer: {programData.game?.maxTimer}</div>
+      <div>Timer: {programData.game?.maxTimer}</div>
       {isRoomOwner && (
         <div>
-          new timer:
+          New Timer:&nbsp;
           <input
+            className="formField24"
             value={timer}
             onChange={(e) => setTimer(Number(e.target.value))}
           />
-          <button type="button" onClick={changeTimer}>
-            Change timer
+          <button className="formBtn24" type="button" onClick={changeTimer}>
+            Change Timer
           </button>
         </div>
       )}
+      <br />
       {isRoomOwner && isPlayerEnough && (
-        <button type="button" onClick={startGame}>
+        <button className="formBtn" type="button" onClick={startGame}>
           Start Game
         </button>
       )}

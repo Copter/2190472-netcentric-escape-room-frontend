@@ -29,7 +29,7 @@ const Background = ({ children }: PropTypes) => {
   return (
     <div className="background" style={styles}>
       <div className="background-content">
-        user counts: {programData.userCounts}
+        User Count: {programData.userCounts}&nbsp;|&nbsp;
         <button type="button" onClick={changeBackground}>
           Change Background
         </button>

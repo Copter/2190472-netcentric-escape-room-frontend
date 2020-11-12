@@ -18,11 +18,17 @@ const JoinRoom = () => {
   };
 
   return (
-    <div>
+    <div className="formPageShort">
       Joining Room {programData.roomID}
       <br />
-      Name: <input type="text" value={playerName} onChange={handleNameChange} />
-      <button type="submit" onClick={handleJoinGame}>
+      Name:{" "}
+      <input
+        className="formField"
+        type="text"
+        value={playerName}
+        onChange={handleNameChange}
+      />
+      <button className="formBtn" type="submit" onClick={handleJoinGame}>
         Join Game
       </button>
     </div>

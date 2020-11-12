@@ -17,9 +17,16 @@ const CreateRoom = () => {
   };
 
   return (
-    <div>
-      Name: <input type="text" value={playerName} onChange={handleNameChange} />
-      <button type="submit" onClick={handleCreateGame}>
+    <div className="formPageShort">
+      Name:{" "}
+      <input
+        className="formField"
+        type="text"
+        value={playerName}
+        onChange={handleNameChange}
+      />
+      <br />
+      <button className="formBtn" type="submit" onClick={handleCreateGame}>
         Create Game
       </button>
     </div>

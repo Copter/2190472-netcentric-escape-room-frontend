@@ -44,7 +44,7 @@ const Object = ({
   if (position?.x === exitPosition?.x && position?.y === exitPosition?.y) {
     return <Exit />;
   }
-  return <div>X</div>;
+  return <div />;
 };
 
 export default Object;
